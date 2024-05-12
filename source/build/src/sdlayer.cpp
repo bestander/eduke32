@@ -477,6 +477,9 @@ int main(int argc, char *argv[])
     argv[argc] = NULL;
 #endif
 
+    // TODO init callback here
+    SDL_on_Init(argc, argv);
+
     engineSetupAllocator();
 
 #ifndef __ANDROID__
@@ -2163,6 +2166,8 @@ void videoShowFrame(int32_t w)
     }
 
     if (SDL_MUSTLOCK(sdl_surface)) SDL_LockSurface(sdl_surface);
+    // TODO ifdef
+    SDL_on_DrawFrame((uint32_t*) sdl_surface->pixels);
     softsurface_blitBuffer((uint32_t*) sdl_surface->pixels, sdl_surface->format->BitsPerPixel);
     if (SDL_MUSTLOCK(sdl_surface)) SDL_UnlockSurface(sdl_surface);
 #if SDL_MAJOR_VERSION >= 2
