@@ -1470,7 +1470,7 @@ int32_t videoCheckMode(int32_t *x, int32_t *y, int32_t c, int32_t fs, int32_t fo
             odx = dx;
             ody = dy;
         }
-    }
+    }    
 
 #ifdef ANY_WINDOWED_SIZE
     if (!forced && (fs&1) == 0 && (nearest < 0 || (validmode[nearest].xdim!=*x || validmode[nearest].ydim!=*y)))
@@ -1482,6 +1482,8 @@ int32_t videoCheckMode(int32_t *x, int32_t *y, int32_t c, int32_t fs, int32_t fo
 
     *x = validmode[nearest].xdim;
     *y = validmode[nearest].ydim;
+
+    SDL_OverrideResolution(x, y);
 
     return nearest;
 }
