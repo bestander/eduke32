@@ -1859,7 +1859,7 @@ void Menu_PopulateNewGameCustomL3(int e, int s)
 
 static void Menu_PopulateJoystick(void)
 {
-    for (int i = 0; i < joystick.numButtons + 4*joystick.numHats + 2*joystick.isGameController; ++i)
+    for (int i = 0; i < joystick.numButtons + 4*joystick.numHats + joystick.isGameController; ++i)
     {
         if (i < joystick.numButtons)
         {
@@ -1884,7 +1884,7 @@ static void Menu_PopulateJoystick(void)
             }
             else if (joystick.isGameController)
             {
-                auto const name = joyGetName(0, i - joystick.numButtons + 4);
+                auto const name = joyGetName(0, i - joystick.numButtons + 4*joystick.numHats);
                 Bassert(name != nullptr);
                 Bstrncpy(MenuJoystickNames[i], name, MAXJOYBUTTONSTRINGLENGTH);
             }
