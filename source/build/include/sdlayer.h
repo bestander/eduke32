@@ -101,7 +101,8 @@ static inline void idle(int const msec = 1)
 #endif
 #endif // build_interface_layer_
 
-// hide in ifdef
+#if SDL_OVERRIDE_RENDERING
 void SDL_on_DrawFrame(uint32_t* pixels);
 void SDL_on_Init(int argc, char *argv[]);
 void SDL_OverrideResolution(int *width, int *height);
+#endif // SDL_OVERRIDE_RENDERING

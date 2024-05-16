@@ -477,8 +477,9 @@ int main(int argc, char *argv[])
     argv[argc] = NULL;
 #endif
 
-    // TODO init callback here
+    #if SDL_OVERRIDE_RENDERING
     SDL_on_Init(argc, argv);
+    #endif // SDL_OVERRIDE_RENDERING
 
     engineSetupAllocator();
 
@@ -1483,7 +1484,9 @@ int32_t videoCheckMode(int32_t *x, int32_t *y, int32_t c, int32_t fs, int32_t fo
     *x = validmode[nearest].xdim;
     *y = validmode[nearest].ydim;
 
+    #if SDL_OVERRIDE_RENDERING
     SDL_OverrideResolution(x, y);
+    #endif // SDL_OVERRIDE_RENDERING
 
     return nearest;
 }
@@ -2168,8 +2171,9 @@ void videoShowFrame(int32_t w)
     }
 
     if (SDL_MUSTLOCK(sdl_surface)) SDL_LockSurface(sdl_surface);
-    // TODO ifdef
+    #if SDL_OVERRIDE_RENDERING
     SDL_on_DrawFrame((uint32_t*) sdl_surface->pixels);
+    #endif // SDL_OVERRIDE_RENDERING
     softsurface_blitBuffer((uint32_t*) sdl_surface->pixels, sdl_surface->format->BitsPerPixel);
     if (SDL_MUSTLOCK(sdl_surface)) SDL_UnlockSurface(sdl_surface);
 #if SDL_MAJOR_VERSION >= 2
