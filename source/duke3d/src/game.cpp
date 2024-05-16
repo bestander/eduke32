@@ -4718,6 +4718,8 @@ void G_HandleLocalKeys(void)
             ud.m_volume_number = rand() % 4;
             ud.m_level_number = rand() % MAXLEVELS;
             while (g_mapInfo[ud.m_volume_number*MAXLEVELS + ud.m_level_number].filename == NULL) {
+                // poke until there is a level
+                ud.m_volume_number = rand() % 4;
                 ud.m_level_number = rand() % MAXLEVELS;
             }
             G_NewGame_EnterLevel();

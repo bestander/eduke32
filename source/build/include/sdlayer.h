@@ -105,4 +105,5 @@ static inline void idle(int const msec = 1)
 void SDL_on_DrawFrame(uint32_t* pixels);
 void SDL_on_Init(int argc, char *argv[]);
 void SDL_OverrideResolution(int *width, int *height);
+void SDL_on_InputEvent();
 #endif // SDL_OVERRIDE_RENDERING

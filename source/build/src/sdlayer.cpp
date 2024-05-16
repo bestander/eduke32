@@ -2518,6 +2518,10 @@ int32_t handleevents_pollsdl(void)
 
     while (SDL_PollEvent(&ev))
     {
+
+        #if SDL_OVERRIDE_RENDERING
+        SDL_on_InputEvent();
+        #endif // SDL_OVERRIDE_RENDERING
         if (g_ImGui_IO)
         {
             if (g_ImGui_IO->WantCaptureKeyboard && (ev.type == SDL_TEXTINPUT || ev.type == SDL_KEYDOWN || ev.type == SDL_KEYUP))
