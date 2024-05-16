@@ -4710,6 +4710,33 @@ void G_HandleLocalKeys(void)
 
             G_UpdateScreenArea();
         }
+
+        if (BUTTON(gamefunc_Random_Level))
+        {
+            CONTROL_ClearButton(gamefunc_Random_Level);
+            srand(time(0));
+            ud.m_volume_number = rand() % 4;
+            ud.m_level_number = rand() % MAXLEVELS;
+            while (g_mapInfo[ud.m_volume_number*MAXLEVELS + ud.m_level_number].filename == NULL) {
+                ud.m_level_number = rand() % MAXLEVELS;
+            }
+            G_NewGame_EnterLevel();
+        }
+
+        if (BUTTON(gamefunc_Get_Stuff))
+        {
+            CONTROL_ClearButton(gamefunc_Get_Stuff);
+            auto const pPlayer = g_player[myconnectindex].ps;
+            int const weaponLimit = MAX_WEAPONS;
+            for (bssize_t weaponNum = PISTOL_WEAPON; weaponNum < weaponLimit; weaponNum++)
+                pPlayer->gotweapon |= (1<<weaponNum);
+            for (bssize_t weaponNum = PISTOL_WEAPON; weaponNum < weaponLimit; weaponNum++)
+                P_AddAmmo(pPlayer, weaponNum, pPlayer->max_ammo_amount[weaponNum]);
+
+            pPlayer->inv_amount[GET_JETPACK] = 1600;
+            pPlayer->inv_amount[GET_FIRSTAID] = pPlayer->max_player_health;
+
+        }
     }
 
     if (myplayer.cheat_phase == 1 || (myplayer.gm & (MODE_MENU|MODE_TYPE)))
@@ -5072,17 +5099,17 @@ FAKE_F3:
             walock[TILE_SAVESHOT] = CACHE1D_UNLOCKED;
         }
 
-        if (BUTTON(gamefunc_Third_Person_View))
-        {
-            CONTROL_ClearButton(gamefunc_Third_Person_View);
+        // if (BUTTON(gamefunc_Third_Person_View))
+        // {
+        //     CONTROL_ClearButton(gamefunc_Third_Person_View);
 
-            myplayer.over_shoulder_on = !myplayer.over_shoulder_on;
+        //     myplayer.over_shoulder_on = !myplayer.over_shoulder_on;
 
-            CAMERADIST  = 0;
-            CAMERACLOCK = (int32_t) totalclock;
+        //     CAMERADIST  = 0;
+        //     CAMERACLOCK = (int32_t) totalclock;
 
-            P_DoQuote(QUOTE_VIEW_MODE_OFF + myplayer.over_shoulder_on, &myplayer);
-        }
+        //     P_DoQuote(QUOTE_VIEW_MODE_OFF + myplayer.over_shoulder_on, &myplayer);
+        // }
 
         if (KB_UnBoundKeyPressed(sc_F8))
         {
@@ -7550,6 +7577,8 @@ static void G_SetupGameButtons(void)
     CONTROL_DefineFlag(gamefunc_Quick_Save, FALSE);
     CONTROL_DefineFlag(gamefunc_Quick_Load, FALSE);
     CONTROL_DefineFlag(gamefunc_Alt_Weapon,FALSE);
-    CONTROL_DefineFlag(gamefunc_Third_Person_View, FALSE);
+    // CONTROL_DefineFlag(gamefunc_Third_Person_View, FALSE);
     CONTROL_DefineFlag(gamefunc_Toggle_Crouch, FALSE);
+    CONTROL_DefineFlag(gamefunc_Random_Level, FALSE);
+    CONTROL_DefineFlag(gamefunc_Get_Stuff, FALSE);
 }

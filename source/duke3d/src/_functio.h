@@ -110,8 +110,10 @@ char gamefunctions[NUMGAMEFUNCTIONS][MAXGAMEFUNCLEN] =
    "Quick_Save",
    "Quick_Load",
    "Alt_Weapon",
-   "Third_Person_View",
+   // "Third_Person_View",
    "Toggle_Crouch",
+   "Random_Level",
+   "Get_Stuff",
    };
 
 // note: internal ordering is important, must not be changed
@@ -178,8 +180,10 @@ const char gamefunc_symbol_names[NUMGAMEFUNCTIONS][MAXGAMEFUNCLEN] =
    "gamefunc_Quick_Save",
    "gamefunc_Quick_Load",
    "gamefunc_Alt_Weapon",
-   "gamefunc_Third_Person_View",
+   // "gamefunc_Third_Person_View",
    "gamefunc_Toggle_Crouch",
+   "gamefunc_Random_Level",
+   "gamefunc_Get_Stuff",
    };
 
 
@@ -227,7 +231,7 @@ const int32_t keybind_order_modern[NUMGAMEFUNCTIONS] =
    // important utilities
    gamefunc_Map,
    gamefunc_Map_Follow_Mode,
-   gamefunc_Third_Person_View,
+   // gamefunc_Third_Person_View,
    gamefunc_Quick_Save,
    gamefunc_Quick_Load,
    // rarely used or usually replaced
@@ -258,6 +262,8 @@ const int32_t keybind_order_modern[NUMGAMEFUNCTIONS] =
    gamefunc_See_Coop_View,
    gamefunc_Show_Scoreboard,
    gamefunc_Show_Console,
+   gamefunc_Random_Level,
+   gamefunc_Get_Stuff,
    };
 
 int32_t keybind_order_custom[NUMGAMEFUNCTIONS] = {-1};

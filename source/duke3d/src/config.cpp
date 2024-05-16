@@ -622,7 +622,7 @@ void CONFIG_SetGameControllerDefaults()
         { CONTROLLER_BUTTON_DPAD_DOWN, gamefunc_Next_Weapon },
         { CONTROLLER_BUTTON_LEFTSHOULDER, gamefunc_Crouch },
         { CONTROLLER_BUTTON_RIGHTSHOULDER, gamefunc_Alt_Fire },
-        { CONTROLLER_BUTTON_MISC, gamefunc_Third_Person_View },
+        // { CONTROLLER_BUTTON_MISC, gamefunc_Third_Person_View },
     };
 
     static GameControllerButtonSetting const buttonsDuke[] =

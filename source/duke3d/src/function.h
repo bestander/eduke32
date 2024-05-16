@@ -99,12 +99,14 @@ enum GameFunction_t
    gamefunc_Quick_Save,
    gamefunc_Quick_Load,
    gamefunc_Alt_Weapon,
-   gamefunc_Third_Person_View,
+   // gamefunc_Third_Person_View,
    gamefunc_Toggle_Crouch,
+   gamefunc_Random_Level,
+   gamefunc_Get_Stuff,
    NUMGAMEFUNCTIONS
    };
 
-EDUKE32_STATIC_ASSERT(NUMGAMEFUNCTIONS <= 64); // CONTROL_ButtonState and CONTROL_ButtonHeldState are uint64_t
+EDUKE32_STATIC_ASSERT(NUMGAMEFUNCTIONS <= 65); // CONTROL_ButtonState and CONTROL_ButtonHeldState are uint64_t
 
 extern char gamefunctions[NUMGAMEFUNCTIONS][MAXGAMEFUNCLEN];
 extern const char gamefunc_symbol_names[NUMGAMEFUNCTIONS][MAXGAMEFUNCLEN];
